@@ -34,7 +34,7 @@ async def quiz_endpoint(payload: QuizRequest, background_tasks: BackgroundTasks)
 
     # Offload work to background so we can return 200 immediately
     if not settings.disable_solver:
-        background_tasks.add_task(run_solver, payload.url, settings.email, settings.secret)
+        background_tasks.add_task(run_solver, str(payload.url), settings.email, settings.secret)
     return AcceptResponse(status="accepted", message="Solving started")
 
 
